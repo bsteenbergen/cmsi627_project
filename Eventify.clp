@@ -24,7 +24,7 @@
 ;;;  -----  -----------  ------------  ---------------------------------
 ;;;  1.0.0  14-Feb-2024  Brittany S.   Initial release
 ;;;  1.0.1  18-Feb-2024  Subhraneel P  Added a template for location & added locations as facts
-;;;
+;;;  1.0.2  12-Mar-2024  Christine L.  Added rules 
 ;;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ;;;
 ;;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -49,6 +49,53 @@
         (slot category)
         (slot isIndoor)
     )
+;;;
+;;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+;;;  Define a list of rules
+;;;  
+;;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+(defrule find-venue
+    (user-input (group-size ?group-size)
+                (energy ?energy)
+                (catering ?catering)
+                (music ?music)
+                (wheelchair-accessible ?wheelchair-accessible)
+                (indoor-outdoor ?indoor-outdoor)
+                (price-range ?price-range))
+    =>
+    (find-matching-venues ?group-size ?energy ?catering ?music ?wheelchair-accessible ?indoor-outdoor ?price-range)
+)
+
+(defrule find-matching-venues
+    ?criteria <- (user-input (group-size ?group-size)
+                              (energy ?energy)
+                              (catering ?catering)
+                              (music ?music)
+                              (wheelchair-accessible ?wheelchair-accessible)
+                              (indoor-outdoor ?indoor-outdoor)
+                              (price-range ?price-range))
+    (location (group_size ?group-size)
+              (energy ?energy)
+              (foodAvailable ?catering)
+              (musicAvailable ?music)
+              (wheelchairAccessible ?wheelchair-accessible)
+              (isIndoor ?indoor-outdoor)
+              (price ?price))
+    (test (price-in-range ?price ?price-range))
+    =>
+    (assert (matched-location (name ?name) (address ?address) (description ?description) (website ?website)))
+    (retract ?criteria)
+)
+
+(deffunction price-in-range (?price ?price-range)
+    (bind ?range (explode$ ?price-range))
+    (bind ?min (str-to-number (nth$ 1 ?range)))
+    (bind ?max (str-to-number (nth$ 2 ?range)))
+    (>= ?price ?min)
+    (<= ?price ?max)
+)
+
 ;;;
 ;;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ;;;  Define a list of locations, containing the appropriate attribute 
