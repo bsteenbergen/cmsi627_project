@@ -56,7 +56,7 @@
 ;;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 (defrule find-venue
-    (user-input (group-size ?group_size)
+    (user-input (group_size ?group_size)
                 (energy ?energy)
                 (foodAvailable ?foodAvailable)
                 (musicAvailable ?musicAvailable)
