@@ -64,7 +64,7 @@
                       (website Boardwalk11.com)
                       (description "indoor")
                       (region SoCal)
-                      (price medium)
+                      (price Medium)
                       (group_size any)
                       (energy medium)
                       (foodAvailable yes)
@@ -146,7 +146,7 @@
                       (region Bay-area)
                       (price High)
                       (group_size any)
-                      (energy Medium-High)
+                      (energy Medium)
                       (foodAvailable no)
                       (alcoholAvailable no)
                       (musicAvailable yes)
@@ -160,7 +160,7 @@
                       (website manhattanbeach.gov)
                       (description "Manhattan Beach Pier is a real gem to photograph as it has a photogenic red-roofed roundhouse at the end of it and turquoise colored steel railings running the length of it. Palm trees line the parking lot at the start of the pier to complete the scene")
                       (region SoCal)
-                      (price none)
+                      (price Low)
                       (group_size any)
                       (energy Low)
                       (foodAvailable no)
@@ -272,7 +272,9 @@
 
 (defrule get-price "Ask the user for the price range"
    =>   
-      (printout t "What is your price range?")
+      (printout t "What is your price range?" crlf
+                  "(Low, Medium, High) crlf
+                  "   [Enter] =>")
       (assert (price (read)))
 
 ;;;
@@ -281,5 +283,7 @@
 ;;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 (defrule energy "Ask the user for the energy level"
    =>   
-      (printout t "What energy level are you looking for?")
+      (printout t "What energy level are you looking for?" crlf
+                  "(Low, Medium, High) crlf
+                  "   [Enter] =>")
       (assert (energy (read)))
