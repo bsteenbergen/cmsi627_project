@@ -259,9 +259,7 @@
 (defrule get-group_size "Ask the user what size the group is"
       (not (group_size ?))
    =>
-      (printout t "What is your group size? "crlf
-                  "(3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 25, 30, 40)" crlf
-                  "   [Enter] =>")
+      (printout t "What is your group size? ")
       (assert (group_size (read)))
 
 
