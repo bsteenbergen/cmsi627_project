@@ -256,51 +256,55 @@
 ;;;  Define a rule to determine the group size from the user
 ;;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-(defrule get-group_size "Ask the user what size the group is"
+   (defrule get-group_size 
       (not (group_size ?))
    =>
       (printout t "What is your group size? ")
       (assert (group_size (read)))
-
+   )
 
 ;;;
 ;;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ;;;  Define a rule to determine the price range from the user
 ;;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-(defrule get-price "Ask the user for the price range"
+   (defrule get-price
    =>   
       (printout t "What is your price range?" crlf
-                  "(Low, Medium, High) crlf
+                  "(Low, Medium, High)" crlf
                   "   [Enter] =>")
       (assert (price (read)))
+   )
 
 ;;;
 ;;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ;;;  Define a rule to determine the energy level from the user
 ;;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-(defrule energy "Ask the user for the energy level"
+   
+   (defrule energy 
    =>   
       (printout t "What energy level are you looking for?" crlf
-                  "(Low, Medium, High) crlf
+                  "(Low, Medium, High)" crlf
                   "   [Enter] =>")
       (assert (energy (read)))
+   )
 
 
 ;;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ;;;  Define a rule to output the result of the search
 ;;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   (defrule print-results "Output the selected venue"
-       (price ?price)
-       (energy  ?energy)
-       (group_size    ?group_size)
-       (Venue (name     ?name)
-                 (price ?price)
-                 (energy  ?energy)
-                 (group_size   $? ?group_size $?)
+
+   (defrule print-results
+      (price      ?price)
+      (energy     ?energy)
+      (group_size ?group_size)
+      (location   (name ?name)
+                  (price ?price)
+                  (energy ?energy)
+                  (group_size ?group_size)
        )
       =>
-       (printout t crlf crlf)
-       (printout t "The best match for you is " ?name " venue.")
-       (printout t crlf crlf crlf)
+      (printout t crlf crlf)
+      (printout t "The best match for you is " ?name " venue.")
+      (printout t crlf crlf crlf)
    )
