@@ -49,52 +49,7 @@
         (slot category)
         (slot isIndoor)
     )
-;;;
-;;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-;;;  Define a list of rules
-;;;  
-;;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-(defrule find-venue
-    (user-input (group_size ?group_size)
-                (energy ?energy)
-                (foodAvailable ?foodAvailable)
-                (musicAvailable ?musicAvailable)
-                (wheelchairAccessible ?wheelchairAccessible)
-                (isIndoor ?isIndoor)
-                (price ?price))
-    =>
-    (find-matching-venues ?group_size ?energy ?foodAvailable ?musicAvailable ?wheelchairAccessible ?isIndoor ?price)
-)
-
-(defrule find-matching-venues
-    ?criteria <- (user-input (group_size ?group_size)
-                              (energy ?energy)
-                              (foodAvailable ?foodAvailable)
-                              (musicAvailable ?musicAvailable)
-                              (wheelchairAccessible ?wheelchairAccessible)
-                              (isIndoor ?isIndoor)
-                              (price ?price))
-    (location (group_size ?group_size)
-              (energy ?energy)
-              (foodAvailable ?foodAvailable)
-              (musicAvailable ?musicAvailable)
-              (wheelchairAccessible ?wheelchairAccessible)
-              (isIndoor ?isIndoor)
-              (price ?price))
-    (test (price-in-range ?price ?price))
-    =>
-    (assert (matched-location (name ?name) (address ?address) (description ?description) (website ?website)))
-    (retract ?criteria)
-)
-
-(deffunction price-in-range (?price ?price)
-    (bind ?range (explode$ ?price))
-    (bind ?min (str-to-number (nth$ 1 ?range)))
-    (bind ?max (str-to-number (nth$ 2 ?range)))
-    (>= ?price ?min)
-    (<= ?price ?max)
-)
 
 ;;;
 ;;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -296,3 +251,35 @@
                       (isIndoor true)
        )
    )
+;;;
+;;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+;;;  Define a rule to determine the group size from the user
+;;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+(defrule get-group_size "Ask the user what size the group is"
+      (not (group_size ?))
+   =>
+      (printout t "What is your group size? "crlf
+                  "(3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 25, 30, 40)" crlf
+                  "   [Enter] =>")
+      (assert (group_size (read)))
+
+
+;;;
+;;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+;;;  Define a rule to determine the price range from the user
+;;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+(defrule get-price "Ask the user for the price range"
+   =>   
+      (printout t "What is your price range?")
+      (assert (price (read)))
+
+;;;
+;;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+;;;  Define a rule to determine the energy level from the user
+;;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+(defrule energy "Ask the user for the energy level"
+   =>   
+      (printout t "What energy level are you looking for?")
+      (assert (energy (read)))
