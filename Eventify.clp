@@ -285,3 +285,22 @@
                   "(Low, Medium, High) crlf
                   "   [Enter] =>")
       (assert (energy (read)))
+
+
+;;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+;;;  Define a rule to output the result of the search
+;;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   (defrule print-results "Output the selected venue"
+       (price ?price)
+       (energy  ?energy)
+       (group_size    ?group_size)
+       (Venue (name     ?name)
+                 (price ?price)
+                 (energy  ?energy)
+                 (group_size   $? ?group_size $?)
+       )
+      =>
+       (printout t crlf crlf)
+       (printout t "The best match for you is " ?name " venue.")
+       (printout t crlf crlf crlf)
+   )
