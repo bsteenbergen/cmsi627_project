@@ -50,7 +50,6 @@
         (slot isIndoor)
     )
 
-
 ;;;
 ;;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ;;;  Define a list of locations, containing the appropriate attribute 
@@ -256,51 +255,161 @@
 ;;;  Define a rule to determine the group size from the user
 ;;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-(defrule get-group_size "Ask the user what size the group is"
+   (defrule get-group_size 
       (not (group_size ?))
    =>
       (printout t "What is your group size? ")
       (assert (group_size (read)))
-
+   )
 
 ;;;
 ;;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ;;;  Define a rule to determine the price range from the user
 ;;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-(defrule get-price "Ask the user for the price range"
+   (defrule get-price
    =>   
       (printout t "What is your price range?" crlf
-                  "(Low, Medium, High) crlf
+                  "(Low, Medium, High)" crlf
                   "   [Enter] =>")
       (assert (price (read)))
+   )
 
 ;;;
 ;;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ;;;  Define a rule to determine the energy level from the user
 ;;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-(defrule energy "Ask the user for the energy level"
+   
+   (defrule get-energy 
    =>   
       (printout t "What energy level are you looking for?" crlf
-                  "(Low, Medium, High) crlf
+                  "(Low, Medium, High)" crlf
                   "   [Enter] =>")
       (assert (energy (read)))
+   )
+;;;
+;;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+;;;  Define a rule to accept the region from the user
+;;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+   (defrule get-region
+   =>   
+      (printout t "What is region of your event?" crlf
+                  "(NorCal, SoCal, Bay Area)" crlf
+                  "   [Enter] =>")
+      (assert (region (read)))
+   )
 
+;;;
+;;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+;;;  Define a rule to accept the category from the user
+;;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   (defrule get-category
+   =>   
+      (printout t "What is the category of your event?" crlf
+                  "(formal, casual)" crlf
+                  "   [Enter] =>")
+      (assert (category (read)))
+   )
+
+;;;
+;;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+;;;  Define a rule to determine if the venue is indoor or outdoor from the user
+;;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   (defrule get-isIndoor
+   =>   
+      (printout t "Do you want the venue to be indoor?" crlf
+                  "(true, false)" crlf
+                  "   [Enter] =>")
+      (assert (isIndoor (read)))
+   )
+
+;;;
+;;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+;;;  Define a rule to determine if food is required by the user
+;;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   (defrule get-foodAvailable
+   =>   
+      (printout t "Do you need food to be available at the venue?" crlf
+                  "(yes, no, request)" crlf
+                  "   [Enter] =>")
+      (assert (foodAvailable (read)))
+   )
+
+;;;
+;;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+;;;  Define a rule to determine if alcohol is required by the user
+;;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   (defrule get-alcoholAvailable
+   =>   
+      (printout t "Do you need alcohol to be available at the venue?" crlf
+                  "(yes, no, request)" crlf
+                  "   [Enter] =>")
+      (assert (alcoholAvailable (read)))
+   )
+
+;;;
+;;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+;;;  Define a rule to determine if music is required the user
+;;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   (defrule get-musicAvailable
+   =>   
+      (printout t "Do you need music to be available at the venue?" crlf
+                  "(yes, no, request)" crlf
+                  "   [Enter] =>")
+      (assert (musicAvailable (read)))
+   )
+
+;;;
+;;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+;;;  Define a rule to determine if the user wants wheelchair accessibility at the venue
+;;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   (defrule get-wheelchairAccessible
+   =>   
+      (printout t "do you need wheechair accessibility at the venue?" crlf
+                  "(yes, no)" crlf
+                  "   [Enter] =>")
+      (assert (wheelchairAccessible (read)))
+   )
+
+;;;
 ;;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ;;;  Define a rule to output the result of the search
 ;;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   (defrule print-results "Output the selected venue"
-       (price ?price)
-       (energy  ?energy)
-       (group_size    ?group_size)
-       (Venue (name     ?name)
-                 (price ?price)
-                 (energy  ?energy)
-                 (group_size   $? ?group_size $?)
+
+   (defrule print-results
+      (price ?price)
+	  (energy ?energy)
+	  (group_size ?group_size)
+	  (region ?region)
+	  (category ?category)
+	  (isIndoor ?isIndoor)
+	  (foodAvailable ?foodAvailable)
+	  (alcoholAvailable ?alcoholAvailable)
+	  (musicAvailable ?musicAvailable)
+	  (wheelchairAccessible ?wheelchairAccessible)
+	  (location   (name ?name)
+                  (price ?price)
+                  (energy ?energy)
+                  (group_size ?group_size)
+				  (region ?region)
+	              (category ?category)
+	              (isIndoor ?isIndoor)
+	              (foodAvailable ?foodAvailable)
+	              (alcoholAvailable ?alcoholAvailable)
+	              (musicAvailable ?musicAvailable)
+	              (wheelchairAccessible ?wheelchairAccessible)
        )
       =>
-       (printout t crlf crlf)
-       (printout t "The best match for you is " ?name " venue.")
-       (printout t crlf crlf crlf)
+      (printout t crlf crlf)
+      (printout t "The best match for you is " ?name " venue.")
+      (printout t crlf crlf crlf)
    )
+
+
