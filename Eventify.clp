@@ -1,7 +1,7 @@
 ;;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ;;;  File name  : Eventify.clp
 ;;;  Purpose    : This CLIPS source file runs a program to determine a
-;;;               location for the user based on their answers to 
+;;;               location for the user based on their answers to
 ;;;               specific questions about their needs.
 ;;;  Project    : CMSI 627
 ;;;  Date       : 14-Feb-2024
@@ -24,12 +24,12 @@
 ;;;  -----  -----------  ------------  ---------------------------------
 ;;;  1.0.0  14-Feb-2024  Brittany S.   Initial release
 ;;;  1.0.1  18-Feb-2024  Subhraneel P. Added a template for location & added locations as facts
-;;;  1.0.2  12-Mar-2024  Christine L.  Added rules 
-;;;  1.0.3  20-Mar-2024  Subhraneel P. Added rules to validate the user inputs 
+;;;  1.0.2  12-Mar-2024  Christine L.  Added rules
+;;;  1.0.3  20-Mar-2024  Subhraneel P. Added rules to validate the user inputs
 ;;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ;;;
 ;;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-;;;  Define a template for a location, containing slots for its 
+;;;  Define a template for a location, containing slots for its
 ;;;  pertinent information.
 ;;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -53,11 +53,11 @@
 
 ;;;
 ;;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-;;;  Define a list of locations, containing the appropriate attribute 
+;;;  Define a list of locations, containing the appropriate attribute
 ;;;  data
 ;;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-   (deffacts location-database 
+   (deffacts location-database
       (location (name "Boardwalk11")
                      (address "10433 National Blvd Los Angeles, CA 90034")
                      (hours 5:00pm-2:00am)
@@ -384,7 +384,7 @@
 ;;;  Define a rule to determine the group size from the user
 ;;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-   (defrule get-group_size 
+   (defrule get-group_size
       (not (group_size ?))
    =>
       (printout t "What is your group size? "crlf
@@ -400,7 +400,7 @@
 
    (defrule get-price_range
       (not (price ?))
-   =>   
+   =>
       (printout t "What is your price range?" crlf
                   "(Type low, medium, or high)" crlf
                   "=> ")
@@ -411,10 +411,10 @@
 ;;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ;;;  Define a rule to determine the energy_range level from the user
 ;;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   
+
    (defrule get-energy_range
-      (not (energy ?))   
-   =>   
+      (not (energy ?))
+   =>
       (printout t "What energy level are you looking for?" crlf
                   "(Type low, medium, or high)" crlf
                   "=> ")
@@ -427,7 +427,7 @@
 
    (defrule get-region
       (not (region ?))
-   =>   
+   =>
       (printout t "What is region of your event?" crlf
                   "(Type NorCal, SoCal, or Bay Area)" crlf
                   "=> ")
@@ -441,7 +441,7 @@
 
    (defrule get-category
       (not (category ?))
-   =>   
+   =>
       (printout t "What is the category of your event?" crlf
                   "(Type formal or casual)" crlf
                   "=> ")
@@ -455,7 +455,7 @@
 
    (defrule get-isIndoor
       (not (isIndoor ?))
-   =>   
+   =>
       (printout t "Do you want the venue to be indoor?" crlf
                   "(Type yes or no)" crlf
                   "=> ")
@@ -469,7 +469,7 @@
 
    (defrule get-foodAvailable
       (not (foodAvailable ?))
-   =>   
+   =>
       (printout t "Do you need food to be available at the venue?" crlf
                   "(Type yes, no, or request)" crlf
                   "=> ")
@@ -483,7 +483,7 @@
 
    (defrule get-alcoholAvailable
       (not (alcoholAvailable ?))
-   =>   
+   =>
       (printout t "Do you need alcohol to be available at the venue?" crlf
                   "(Type yes, no, or request)" crlf
                   "=> ")
@@ -497,7 +497,7 @@
 
    (defrule get-musicAvailable
       (not (musicAvailable ?))
-   =>   
+   =>
       (printout t "Do you need music to be available at the venue?" crlf
                   "(Type yes, no, or request)" crlf
                   "=> ")
@@ -506,13 +506,13 @@
 
 ;;;
 ;;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-;;;  Define a rule to determine if the user wants 
+;;;  Define a rule to determine if the user wants
 ;;;   wheelchair accessibility at the venue
 ;;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
    (defrule get-wheelchairAccessible
       (not (wheelchairAccessible ?))
-   =>   
+   =>
       (printout t "Do you need wheechair accessibility at the venue?" crlf
                   "(Type yes or no)" crlf
                   "=> ")
@@ -521,7 +521,7 @@
 
 ;;;
 ;;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-;;;  Define a rule to to throw out wrong price range value so that 
+;;;  Define a rule to to throw out wrong price range value so that
 ;;;   user have to enter valid data
 ;;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -533,7 +533,7 @@
 
 ;;;
 ;;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-;;;  Define a rule to to throw out wrong energy value so that 
+;;;  Define a rule to to throw out wrong energy value so that
 ;;;   user have to enter valid data
 ;;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -545,7 +545,7 @@
 
 ;;;
 ;;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-;;;  Define a rule to to throw out wrong region value so that 
+;;;  Define a rule to to throw out wrong region value so that
 ;;;   user have to enter valid data
 ;;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -557,7 +557,7 @@
 
 ;;;
 ;;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-;;;  Define a rule to to throw out wrong category value so that 
+;;;  Define a rule to to throw out wrong category value so that
 ;;;   user have to enter valid data
 ;;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -569,7 +569,7 @@
 
 ;;;
 ;;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-;;;  Define a rule to to throw out wrong isIndoor value so that  
+;;;  Define a rule to to throw out wrong isIndoor value so that
 ;;;   user have to enter valid data
 ;;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -581,7 +581,7 @@
 
 ;;;
 ;;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-;;;  Define a rule to to throw out wrong foodAvailable value so that 
+;;;  Define a rule to to throw out wrong foodAvailable value so that
 ;;;   user have to enter valid data
 ;;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -593,7 +593,7 @@
 
 ;;;
 ;;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-;;;  Define a rule to to throw out wrong musicAvailable value so that 
+;;;  Define a rule to to throw out wrong musicAvailable value so that
 ;;;   user have to enter valid data
 ;;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -605,7 +605,7 @@
 
 ;;;
 ;;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-;;;  Define a rule to to throw out wrong alcoholAvailable value so that 
+;;;  Define a rule to to throw out wrong alcoholAvailable value so that
 ;;;   user have to enter valid data
 ;;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -643,33 +643,52 @@
          (alcoholAvailable ?alcoholAvailable)
          (musicAvailable ?musicAvailable)
          (wheelchairAccessible ?wheelchairAccessible)
-         (location   (name ?name)
-                     (address ?address)
-                     (hours ?hours)
-                     (website ?website)
-                     (description ?description)
-                     (price_range $? ?price $?)
-                     (energy_range $? ?energy $?)
-                     (group_size ?group_size)
-                     (region ?region)
-                     (category $? ?category $?)
-                     (isIndoor ?isIndoor)
-                     (foodAvailable ?foodAvailable)
-                     (alcoholAvailable ?alcoholAvailable)
-                     (musicAvailable ?musicAvailable)
-                     (wheelchairAccessible ?wheelchairAccessible)
-         )
+         (location (name ?name)
+                   (address ?address)
+                   (hours ?hours)
+                   (website ?website)
+                   (description ?description)
+                   (price_range ?price)         ; notice the change here
+                   (energy_range $? ?energy $?)
+                   (region ?region)
+                   (category $? ?category $?)
+                   (isIndoor ?isIndoor)
+                   (foodAvailable ?foodAvailable)
+                   (alcoholAvailable ?alcoholAvailable)
+                   (musicAvailable ?musicAvailable)
+                   (wheelchairAccessible ?wheelchairAccessible)
+          )
+;;;
+; Below is the original location matching which I copied above
+; I changed the price range to just match ?price and took out
+;  the group size match and there is one match in the database
+;  for the parameters.  To answer the questions I used:
+;     80 medium medium SoCal casual yes yes yes yes yes
+;;;
+;         (location   (name ?name)
+;                     (address ?address)
+;                     (hours ?hours)
+;                     (website ?website)
+;                     (description ?description)
+;                     (price_range $? ?price $?)
+;                     (energy_range $? ?energy $?)
+;                     (group_size ?group_size)
+;                     (region ?region)
+;                     (category $? ?category $?)
+;                     (isIndoor ?isIndoor)
+;                     (foodAvailable ?foodAvailable)
+;                     (alcoholAvailable ?alcoholAvailable)
+;                     (musicAvailable ?musicAvailable)
+;                     (wheelchairAccessible ?wheelchairAccessible)
+;         )
          =>
          (printout t crlf crlf)
-         (printout t "You should go to " ?name ". Here are the details: ")
+         (printout t "  You should go to " ?name ". Here are the details: " crlf)
+         (printout t "  " ?address crlf)
+         (printout t "  Hours: " ?hours crlf)
+         (printout t "  Description: " ?description crlf)
          (printout t crlf crlf)
-         (printout t ?address)
-         (printout t crlf crlf)
-         (printout t "Hours: " ?hours)
-         (printout t crlf crlf)
-         (printout t "Description: " ?description)
-         (printout t crlf crlf)
-)
+   )
 
 
 
