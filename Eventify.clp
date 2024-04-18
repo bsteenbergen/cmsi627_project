@@ -22,10 +22,7 @@
 ;;;
 ;;;   Ver      Date      Modified by:  Description
 ;;;  -----  -----------  ------------  ---------------------------------
-;;;  1.0.0  14-Feb-2024  Brittany S.   Initial release
-;;;  1.0.1  18-Feb-2024  Subhraneel P. Added a template for location & added locations as facts
-;;;  1.0.2  12-Mar-2024  Christine L.  Added rules
-;;;  1.0.3  20-Mar-2024  Subhraneel P. Added rules to validate the user inputs
+;;;  1.0.0  14-Feb-2024  Brittany S.   Initial release and hosted to GitHub (see there for version control)
 ;;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ;;;
 ;;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -41,7 +38,7 @@
         (slot description (type STRING))
         (slot region)
         (multislot price_range)
-        (slot group_size)
+        (multislot group_size)
         (multislot energy_range)
         (slot foodAvailable)
         (slot alcoholAvailable)
@@ -57,7 +54,7 @@
 ;;;  data
 ;;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-   (deffacts location-database
+   (deffacts location-database 
       (location (name "Boardwalk11")
                      (address "10433 National Blvd Los Angeles, CA 90034")
                      (hours 5:00pm-2:00am)
@@ -65,7 +62,7 @@
                      (description "indoor")
                      (region SoCal)
                      (price_range medium)
-                     (group_size any)
+                     (group_size small medium large)
                      (energy_range medium)
                      (foodAvailable yes)
                      (alcoholAvailable yes)
@@ -81,7 +78,7 @@
                      (description "Retail and entertainment complex in Los Angeles.")
                      (region SoCal)
                      (price_range medium high)
-                     (group_size any)
+                     (group_size small medium large)
                      (energy_range medium)
                      (foodAvailable yes)
                      (alcoholAvailable yes)
@@ -97,7 +94,7 @@
                      (description "Shopping center with attractions and live shows")
                      (region Bay-area)
                      (price_range low medium)
-                     (group_size any)
+                     (group_size small medium large)
                      (energy_range medium high)
                      (foodAvailable yes)
                      (alcoholAvailable yes)
@@ -113,7 +110,7 @@
                      (description "Large urban park consisting of 1,017 acres of public grounds")
                      (region Bay-area)
                      (price_range low medium)
-                     (group_size any)
+                     (group_size small medium large)
                      (energy_range low medium)
                      (foodAvailable no)
                      (alcoholAvailable no)
@@ -129,7 +126,7 @@
                      (description "A friendly neighborhood bar with a 'Cheers'-like sensibility, this cozy log cabin transports eager Angelenos to grandpa's cabin at story time")
                      (region SoCal)
                      (price_range low)
-                     (group_size any)
+                     (group_size small medium large)
                      (energy_range medium)
                      (foodAvailable yes)
                      (alcoholAvailable yes)
@@ -145,7 +142,7 @@
                      (description "The Fillmore is a historic music venue in San Francisco, California")
                      (region Bay-area)
                      (price_range high)
-                     (group_size any)
+                     (group_size small medium large)
                      (energy_range medium)
                      (foodAvailable no)
                      (alcoholAvailable no)
@@ -161,7 +158,7 @@
                      (description "Manhattan Beach Pier is a real gem to photograph as it has a photogenic red-roofed roundhouse at the end of it and turquoise colored steel railings running the length of it. Palm trees line the parking lot at the start of the pier to complete the scene")
                      (region SoCal)
                      (price_range low)
-                     (group_size any)
+                     (group_size small medium large)
                      (energy_range low)
                      (foodAvailable no)
                      (alcoholAvailable no)
@@ -177,7 +174,7 @@
                      (description "Shops, bars and restaurants")
                      (region SoCal)
                      (price_range medium)
-                     (group_size 30)
+                     (group_size small)
                      (energy_range high)
                      (foodAvailable yes)
                      (alcoholAvailable yes)
@@ -193,7 +190,7 @@
                      (description "private venue outdoors")
                      (region SoCal)
                      (price_range medium)
-                     (group_size 40)
+                     (group_size medium)
                      (energy_range low)
                      (foodAvailable yes)
                      (alcoholAvailable yes)
@@ -209,7 +206,7 @@
                      (description "Karting for kids and adults, 1 challening indoor track and space for a fun or formal event")
                      (region SoCal)
                      (price_range high)
-                     (group_size 40)
+                     (group_size medium)
                      (energy_range high)
                      (foodAvailable request)
                      (alcoholAvailable request)
@@ -225,7 +222,7 @@
                      (description "")
                      (region SoCal)
                      (price_range medium)
-                     (group_size any)
+                     (group_size small medium large)
                      (energy_range high)
                      (foodAvailable no)
                      (alcoholAvailable yes)
@@ -241,7 +238,7 @@
                      (description "Discover uniquely-themed rooms with plenty of photo opportunities in ball pits, VR tech, hot air balloon simulators and illusions")
                      (region SoCal)
                      (price_range medium)
-                     (group_size any)
+                     (group_size small medium large)
                      (energy_range medium high)
                      (foodAvailable request)
                      (alcoholAvailable request)
@@ -257,7 +254,7 @@
                      (description "Amusement park in Anaheim, California, featuring characters, rides, and shows based on the creations of Walt Disney and the Disney Company")
                      (region SoCal)
                      (price_range high)
-                     (group_size any)
+                     (group_size small medium large)
                      (energy_range high)
                      (foodAvailable yes)
                      (alcoholAvailable no)
@@ -273,7 +270,7 @@
                      (description "A stunning national park famous for its unique desert landscape and rock formations, offering hiking, rock climbing, and stargazing.")
                      (region SoCal)
                      (price_range low)
-                     (group_size any)
+                     (group_size small medium large)
                      (energy_range high)
                      (foodAvailable no)
                      (alcoholAvailable no)
@@ -289,7 +286,7 @@
                      (description "Lodge offering comfortable accommodations, dining options, and breathtaking views of Yosemite Valley")
                      (region NorCal)
                      (price_range low)
-                     (group_size any)
+                     (group_size small medium large)
                      (energy_range low)
                      (foodAvailable yes)
                      (alcoholAvailable yes)
@@ -305,7 +302,7 @@
                      (description "Iconic music venue featuring live performances, a restaurant serving Southern-inspired cuisine, and a lively bar.")
                      (region SoCal)
                      (price_range medium)
-                     (group_size any)
+                     (group_size small medium large)
                      (energy_range medium)
                      (foodAvailable yes)
                      (alcoholAvailable yes)
@@ -321,7 +318,7 @@
                      (description "Gin-focused cocktail lounge with globally inspired eats in expansive, ornate, Victorian-themed digs.")
                      (region Bay-area)
                      (price_range medium high)
-                     (group_size any)
+                     (group_size small medium large)
                      (energy_range medium)
                      (foodAvailable yes)
                      (alcoholAvailable request)
@@ -337,7 +334,7 @@
                      (description "Take a unique culinary journey across America at The Barrel Room. Explore diverse flavors through our regional menus crafted with fresh, local ingredients.")
                      (region Bay-area)
                      (price_range medium high)
-                     (group_size any)
+                     (group_size small medium large)
                      (energy_range medium)
                      (foodAvailable yes)
                      (alcoholAvailable yes)
@@ -353,7 +350,7 @@
                      (description "Tahoe Club Crawl is a walking nightlife tour, hitting the hottest bars and nightclubs in South Lake Tahoe.")
                      (region NorCal)
                      (price_range high)
-                     (group_size any)
+                     (group_size small medium large)
                      (energy_range high)
                      (foodAvailable yes)
                      (alcoholAvailable yes)
@@ -369,7 +366,7 @@
                      (description "Whether your vibe is nature, San Francisco history, or play, you’ll find something to do among the Presidio’s top attractions. The 1,491-acre park offers everything from ocean-side hikes to outdoor art exhibits to free family activities. There’s also a regular lineup of events.")
                      (region Bay-area)
                      (price_range medium)
-                     (group_size any)
+                     (group_size small medium large)
                      (energy_range low)
                      (foodAvailable yes)
                      (alcoholAvailable no)
@@ -379,16 +376,17 @@
                      (isIndoor no)
       )
    )
+
 ;;;
 ;;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ;;;  Define a rule to determine the group size from the user
 ;;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-   (defrule get-group_size
+   (defrule get-group_size 
       (not (group_size ?))
    =>
       (printout t "What is your group size? "crlf
-                  "(Type a number or 'any')" crlf
+                  "(0-30: small; 30-50: medium; >50: large)" crlf
                   "=> ")
       (assert (group_size (read)))
    )
@@ -506,8 +504,7 @@
 
 ;;;
 ;;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-;;;  Define a rule to determine if the user wants
-;;;   wheelchair accessibility at the venue
+;;;  Define a rule to determine if the user wants wheelchair accessibility at the venue
 ;;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
    (defrule get-wheelchairAccessible
@@ -517,6 +514,17 @@
                   "(Type yes or no)" crlf
                   "=> ")
       (assert (wheelchairAccessible (read)))
+   )
+
+;;;
+;;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+;;;  Define a rule to to throw out wrong group_size value so that user have to enter valid data
+;;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   (defrule bad-group-size-entry "Ditch bogus group-size entries"
+       ?f <- (group_size ~small & ~medium & ~large)
+      =>
+       (retract ?f)
    )
 
 ;;;
@@ -627,6 +635,84 @@
        (retract ?f)
    )
 
+;;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+;;;  Define a rule to assert foodAvailable yes when user chooses foodAvailable
+;;;    as request
+;;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   (defrule set-foodAvailable
+       "Assert foodAvailable yes when user chooses request"
+       (foodAvailable request)
+      =>
+       (assert (foodAvailable yes))
+	   ;(retract ?f)
+   )
+
+;;;
+;;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+;;;  Define a rule to assert musicAvailable yes when user chooses musicAvailable
+;;;    as request
+;;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   (defrule set-musicAvailable
+       "Assert musicAvailable yes when user chooses request"
+       (musicAvailable request)
+      =>
+       (assert (musicAvailable yes))
+   )
+
+;;;
+;;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+;;;  Define a rule to assert alcoholAvailable yes when user chooses alcoholAvailable
+;;;    as request
+;;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   (defrule set-alcoholAvailable
+       "Assert alcoholAvailable yes when user chooses request"
+       (alcoholAvailable request)
+      =>
+       (assert (alcoholAvailable yes))
+   )
+
+;;;
+;;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+;;;  Define a rule to assert foodAvailable request when user chooses foodAvailable
+;;;    as yes
+;;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   (defrule set-foodAvailableYes 
+       "Assert foodAvailable yes when user chooses request"
+       (foodAvailable yes)
+      =>
+       (assert (foodAvailable request))
+   )
+
+;;;
+;;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+;;;  Define a rule to assert musicAvailable request when user chooses musicAvailable
+;;;    as yes
+;;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   (defrule set-musicAvailableYes
+       "Assert musicAvailable yes when user chooses request"
+       (musicAvailable yes)
+      =>
+       (assert (musicAvailable request))
+   )
+
+;;;
+;;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+;;;  Define a rule to assert alcoholAvailable request when user chooses alcoholAvailable
+;;;    as yes
+;;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   (defrule set-alcoholAvailableYes 
+       "Assert alcoholAvailable yes when user chooses request"
+       (alcoholAvailable yes)
+      =>
+       (assert (alcoholAvailable request))
+   )
+
 ;;;
 ;;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ;;;  Define a rule to output the result of the search
@@ -688,8 +774,20 @@
          (printout t "  Hours: " ?hours crlf)
          (printout t "  Description: " ?description crlf)
          (printout t crlf crlf)
+		   (assert (match matchFound))
    )
 
+;;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+;;;  Define a rule to output the result of the search
+;;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   
+   (defrule print-noMatch "Display a message to user of there is no match"
+         (not (match matchFound))
+         =>
+         (printout t crlf crlf)
+         (printout t "Sorry! No matching location/venue found for the given inputs.")
+         (printout t crlf crlf)
+   )	
 
 
 
