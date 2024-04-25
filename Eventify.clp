@@ -734,7 +734,7 @@
                    (hours ?hours)
                    (website ?website)
                    (description ?description)
-                   (price_range ?price)         ; notice the change here
+                   (price_range $? ?price $?)         
                    (energy_range $? ?energy $?)
                    (region ?region)
                    (category $? ?category $?)
@@ -744,29 +744,6 @@
                    (musicAvailable ?musicAvailable)
                    (wheelchairAccessible ?wheelchairAccessible)
           )
-;;;
-; Below is the original location matching which I copied above
-; I changed the price range to just match ?price and took out
-;  the group size match and there is one match in the database
-;  for the parameters.  To answer the questions I used:
-;     80 medium medium SoCal casual yes yes yes yes yes
-;;;
-;         (location   (name ?name)
-;                     (address ?address)
-;                     (hours ?hours)
-;                     (website ?website)
-;                     (description ?description)
-;                     (price_range $? ?price $?)
-;                     (energy_range $? ?energy $?)
-;                     (group_size ?group_size)
-;                     (region ?region)
-;                     (category $? ?category $?)
-;                     (isIndoor ?isIndoor)
-;                     (foodAvailable ?foodAvailable)
-;                     (alcoholAvailable ?alcoholAvailable)
-;                     (musicAvailable ?musicAvailable)
-;                     (wheelchairAccessible ?wheelchairAccessible)
-;         )
          =>
          (printout t crlf crlf)
          (printout t "  You should go to " ?name ". Here are the details: " crlf)
