@@ -427,7 +427,7 @@
       (not (region ?))
    =>
       (printout t "What is region of your event?" crlf
-                  "(Type NorCal, SoCal, or Bay Area)" crlf
+                  "(Type NorCal, SoCal, or Bay-area)" crlf
                   "=> ")
       (assert (region (read)))
    )
